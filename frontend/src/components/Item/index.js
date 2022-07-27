@@ -33,9 +33,6 @@ class Item extends React.Component {
     this.props.onUnload();
   }
 
-  addDefaultImage(e) {
-    e.target.src= "/placeholder.png";
-  }
   render() {
     if (!this.props.item) {
       return null;
@@ -55,7 +52,6 @@ class Item extends React.Component {
               <img
                 src={this.props.item.image}
                 alt={this.props.item.title}
-                onError={this.addDefaultImage}
                 className="item-img"
                 style={{ height: "500px", width: "100%", borderRadius: "6px" }}
               />
