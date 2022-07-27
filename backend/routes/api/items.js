@@ -149,6 +149,7 @@ router.post("/", auth.required, function (req, res, next) {
       var item = new Item(req.body.item);
 
       item.seller = user;
+      item.image = "placeholder.png";
 
       return item.save().then(function () {
         sendEvent("item_created", { item: req.body.item });
@@ -176,8 +177,6 @@ router.get("/:item", auth.optional, function (req, res, next) {
 router.put("/:item", auth.required, function (req, res, next) {
   User.findById(req.payload.id).then(function (user) {
     if (req.item.seller._id.toString() === req.payload.id.toString()) {
-      req.item.image = "placeholder.png";
-
       if (typeof req.body.item.title !== "undefined") {
         req.item.title = req.body.item.title;
       }
