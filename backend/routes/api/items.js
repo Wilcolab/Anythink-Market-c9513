@@ -52,6 +52,9 @@ router.get("/", auth.optional, function (req, res, next) {
   if (typeof req.query.tag !== "undefined") {
     query.tagList = { $in: [req.query.tag] };
   }
+  if (typeof req.query.title !== "undefined") {
+    query.title = { $in: [req.query.title] };
+  }
 
   Promise.all([
     req.query.seller ? User.findOne({ username: req.query.seller }) : null,
@@ -162,7 +165,6 @@ router.post("/", auth.required, function (req, res, next) {
 router.get("/:item", auth.optional, function (req, res, next) {
   Promise.all([
     req.payload ? User.findById(req.payload.id) : null,
-    req.query ? Item.find({ title: req.query.title }) : null,
     req.item.populate("seller").execPopulate(),
   ])
     .then(function (results) {
