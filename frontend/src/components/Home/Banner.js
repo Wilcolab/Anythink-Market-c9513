@@ -1,24 +1,26 @@
 import React from "react";
 import logo from "../../imgs/logo.png";
+//import { Items } from "../../agent";
+import agent from "../../agent";
 
 const SearchBox = () => {
-  const [title, setTitle] = React.useState();
+  const [title, setTitle] = React.useState("");
 
   const handleChange = (event) => {
+    event.preventDefault();
     const { value } = event.target;
     setTitle(value);
 
     if (title.length >= 3) {
-      searchItems();
+      agent.Items.term(title, 500);
     }
   };
 
-  const searchItems = () => {};
   return (
     <>
       <input
         type="text"
-        className="search-box"
+        id="search-box"
         onChange={handleChange}
         value={title}
       ></input>
