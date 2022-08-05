@@ -3,7 +3,7 @@ import logo from "../../imgs/logo.png";
 //import { Items } from "../../agent";
 import agent from "../../agent";
 
-const SearchBox = () => {
+const SearchBox = (props) => {
   const [title, setTitle] = React.useState("");
 
   const handleChange = (event) => {
@@ -24,18 +24,19 @@ const SearchBox = () => {
         onChange={handleChange}
         value={title}
       ></input>
+      {!props.items && <p id="empty">No items found for {title}</p>}
     </>
   );
 };
 
-const Banner = () => {
+const Banner = (props) => {
   return (
     <div className="banner text-white">
       <div className="container p-4 text-center">
         <img src={logo} alt="banner" />
         <div>
           <span id="get-part">A place to get</span>
-          <SearchBox></SearchBox>
+          <SearchBox items={props.items}></SearchBox>
           <span> the cool stuff.</span>
         </div>
       </div>

@@ -93,6 +93,8 @@ const MainView = (props) => {
         itemsCount={props.itemsCount}
         currentPage={props.currentPage}
       />
+
+      {!props.items && <p id="empty"></p>}
     </div>
   );
 };
