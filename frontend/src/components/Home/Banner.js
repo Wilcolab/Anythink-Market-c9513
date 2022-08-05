@@ -24,7 +24,7 @@ const SearchBox = (props) => {
         onChange={handleChange}
         value={title}
       ></input>
-      {props.items ? <p id="empty">No items found for {title}</p> : null}
+      {props.items ? null : <p id="empty">No items found for {title}</p>}
     </>
   );
 };
